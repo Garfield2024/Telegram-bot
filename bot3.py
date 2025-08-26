@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sqlite3
+import os
 from typing import Optional
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
@@ -12,7 +13,9 @@ OWNER_ID = 7070881772
 CHANNEL_ID = -1002043139652          # آیدی عددی کانال
 CHANNEL_USERNAME = "confing_gari"    # بدون @
 BOT_USERNAME = "Config_gari_bot"     # یوزرنیم ربات بدون @
-BOT_TOKEN = "7898102329:AAEVWHVhYLQcakjq4oOt9JLjcqnPOxsfIHQ"
+BOT_TOKEN = os.environ.get("TOKEN")
+if not BOT_TOKEN:
+    raise RuntimeError("TOKEN env var not set")
 # =========================
 
 # --- اتصال دیتابیس و جدول‌ها ---
@@ -355,4 +358,5 @@ def main():
     app.run_polling()
 
 if __name__ == "__main__":
+
     main()
